@@ -1,6 +1,6 @@
 from Models.user import User
 from config import db
-from sqlalchemy import select, update, delete
+from sqlalchemy import select, update, delete, func
 
 
 class UserRepository:
@@ -67,3 +67,11 @@ class UserRepository:
             query = select(User).where(User.email == email)
             result = await session.execute(query)
             return result.scalar_one_or_none()
+
+    @staticmethod
+    async def count_by_company(company_id: int) -> int:
+        async with db as session:
+            query = select(func.count()).select_from(User).where(User.company_id == company_id)
+            result = await session.execute(query)
+            return result.scalar()
+
