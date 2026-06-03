@@ -16,6 +16,14 @@ import {
   faBullseye,
   faBoxesStacked,
   faCubes,
+  faRightToBracket,
+  faUserPlus,
+  faEnvelope,
+  faLock,
+  faBuilding,
+  faUser,
+  faArrowRight,
+  faCircleNotch,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -34,7 +42,15 @@ library.add(
   faCircleHalfStroke,
   faBullseye,
   faBoxesStacked,
-  faCubes
+  faCubes,
+  faRightToBracket,
+  faUserPlus,
+  faEnvelope,
+  faLock,
+  faBuilding,
+  faUser,
+  faArrowRight,
+  faCircleNotch
 );
 
 // Auto-replace <i> tags with SVG

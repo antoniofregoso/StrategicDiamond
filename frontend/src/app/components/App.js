@@ -31,6 +31,9 @@ export class App {
   render() {
     const state = this.store.getState().ui;
     const { resolvedTheme, sidebarCollapsed, currentPage } = state;
+    const authPages = ['login', 'registro'];
+    const isAuthPage = authPages.includes(currentPage);
+    const isAuthenticated = Boolean(localStorage.getItem('sd-auth-token'));
 
     // Apply theme to <html>
     document.documentElement.setAttribute('data-theme', resolvedTheme);
@@ -38,6 +41,12 @@ export class App {
     if (!this.el) return;
 
     this.el.innerHTML = '';
+
+    if (!isAuthenticated || isAuthPage) {
+      this.renderAuthLayout(isAuthPage ? currentPage : 'login');
+      return;
+    }
+
     this.el.className = `app-layout${sidebarCollapsed ? ' sidebar-collapsed' : ''}`;
 
     // Sidebar
@@ -65,10 +74,24 @@ export class App {
     // Page content
     const content = document.createElement('div');
     content.className = 'app-content';
-    const router = new PageRouter({ currentPage });
+    const router = new PageRouter({
+      currentPage,
+      onNavigate: (page) => this.store.dispatch(setCurrentPage(page)),
+    });
     content.appendChild(router.render());
     main.appendChild(content);
 
     this.el.appendChild(main);
+  }
+
+  renderAuthLayout(currentPage) {
+    this.el.className = 'app-auth-layout';
+
+    const router = new PageRouter({
+      currentPage,
+      onNavigate: (page) => this.store.dispatch(setCurrentPage(page)),
+    });
+
+    this.el.appendChild(router.render());
   }
 }

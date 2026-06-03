@@ -25351,6 +25351,12 @@ body,
   }
 }
 
+.app-auth-layout {
+  min-height: 100vh;
+  background: var(--sd-bg);
+  color: var(--sd-text);
+}
+
 .sd-sidebar {
   width: var(--sd-sidebar-w);
   min-width: var(--sd-sidebar-w);
@@ -25769,6 +25775,193 @@ body,
   line-height: 1.6;
 }
 
+.sd-auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.sd-auth-panel {
+  width: 100%;
+  max-width: 420px;
+  background: var(--sd-surface);
+  border: 1px solid var(--sd-border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: var(--sd-shadow);
+  transition: background var(--sd-transition), border-color var(--sd-transition), box-shadow var(--sd-transition);
+}
+.sd-auth-panel:hover {
+  box-shadow: var(--sd-shadow-lg);
+}
+
+.sd-auth-panel--wide {
+  max-width: 560px;
+}
+
+.sd-auth-panel__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.sd-auth-panel__icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--sd-accent), var(--sd-accent-2));
+  border-radius: 14px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 16px var(--sd-accent-glow);
+}
+
+.sd-auth-panel__title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--sd-text);
+  line-height: 1.2;
+}
+
+.sd-auth-panel__text {
+  font-size: 0.9rem;
+  color: var(--sd-text-muted);
+  line-height: 1.5;
+}
+
+.sd-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.sd-auth-form .field {
+  margin-bottom: 0;
+}
+.sd-auth-form .label {
+  color: var(--sd-text);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.sd-auth-form .control.has-icons-left .icon {
+  color: var(--sd-text-muted);
+}
+.sd-auth-form .input {
+  height: 44px;
+  background: var(--sd-surface-alt);
+  border-color: var(--sd-border);
+  border-radius: 10px;
+  color: var(--sd-text);
+  box-shadow: none;
+  font-size: 0.9rem;
+}
+.sd-auth-form .input::placeholder {
+  color: var(--sd-text-muted);
+  opacity: 0.72;
+}
+.sd-auth-form .input:hover {
+  border-color: var(--sd-border);
+}
+.sd-auth-form .input:focus {
+  border-color: var(--sd-accent);
+  box-shadow: 0 0 0 3px var(--sd-accent-glow);
+}
+
+.sd-auth-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+@media (max-width: 560px) {
+  .sd-auth-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sd-auth-message {
+  min-height: 18px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--sd-text-muted);
+}
+.sd-auth-message.is-success {
+  color: var(--sd-accent-2);
+}
+.sd-auth-message.is-error {
+  color: #ff6b7a;
+}
+
+.sd-auth-submit {
+  gap: 0.65rem;
+  min-height: 44px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--sd-accent), var(--sd-accent-2));
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  box-shadow: 0 4px 16px var(--sd-accent-glow);
+  transition: opacity var(--sd-transition), transform var(--sd-transition), box-shadow var(--sd-transition);
+}
+.sd-auth-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px var(--sd-accent-glow);
+}
+.sd-auth-submit:disabled {
+  opacity: 0.65;
+}
+.sd-auth-submit.is-loading .sd-auth-submit-icon svg, .sd-auth-submit.is-loading .sd-auth-submit-icon i {
+  animation: sd-spin 0.9s linear infinite;
+}
+
+.sd-auth-submit-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.sd-auth-alt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+  color: var(--sd-text-muted);
+  font-size: 0.84rem;
+}
+
+.sd-auth-link {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--sd-accent-light);
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 0.2rem 0.3rem;
+  border-radius: 6px;
+  transition: color var(--sd-transition), background var(--sd-transition);
+}
+.sd-auth-link:hover {
+  color: var(--sd-accent);
+  background: var(--sd-surface-alt);
+}
+
+@keyframes sd-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 @media (max-width: 768px) {
   .app-layout {
     flex-direction: column;

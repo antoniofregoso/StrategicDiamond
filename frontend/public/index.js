@@ -5203,15 +5203,35 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
   var counter = api.counter;
 
   // node_modules/@fortawesome/free-solid-svg-icons/index.mjs
+  var faCircleNotch = {
+    prefix: "fas",
+    iconName: "circle-notch",
+    icon: [512, 512, [], "f1ce", "M222.7 32.1c5 16.9-4.6 34.8-21.5 39.8C121.8 95.6 64 169.1 64 256c0 106 86 192 192 192s192-86 192-192c0-86.9-57.8-160.4-137.1-184.1c-16.9-5-26.6-22.9-21.5-39.8s22.9-26.6 39.8-21.5C434.9 42.1 512 140 512 256c0 141.4-114.6 256-256 256S0 397.4 0 256C0 140 77.1 42.1 182.9 10.6c16.9-5 34.8 4.6 39.8 21.5z"]
+  };
   var faBars = {
     prefix: "fas",
     iconName: "bars",
     icon: [448, 512, ["navicon"], "f0c9", "M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"]
   };
+  var faLock = {
+    prefix: "fas",
+    iconName: "lock",
+    icon: [448, 512, [128274], "f023", "M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"]
+  };
   var faBullseye = {
     prefix: "fas",
     iconName: "bullseye",
     icon: [512, 512, [], "f140", "M448 256A192 192 0 1 0 64 256a192 192 0 1 0 384 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 80a80 80 0 1 0 0-160 80 80 0 1 0 0 160zm0-224a144 144 0 1 1 0 288 144 144 0 1 1 0-288zM224 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"]
+  };
+  var faUser = {
+    prefix: "fas",
+    iconName: "user",
+    icon: [448, 512, [128100, 62144], "f007", "M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"]
+  };
+  var faRightToBracket = {
+    prefix: "fas",
+    iconName: "right-to-bracket",
+    icon: [512, 512, ["sign-in-alt"], "f2f6", "M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"]
   };
   var faGem = {
     prefix: "fas",
@@ -5228,6 +5248,11 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     iconName: "chart-line",
     icon: [512, 512, ["line-chart"], "f201", "M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64L0 400c0 44.2 35.8 80 80 80l400 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 416c-8.8 0-16-7.2-16-16L64 64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"]
   };
+  var faArrowRight = {
+    prefix: "fas",
+    iconName: "arrow-right",
+    icon: [448, 512, [8594], "f061", "M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"]
+  };
   var faRoute = {
     prefix: "fas",
     iconName: "route",
@@ -5238,21 +5263,26 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     iconName: "cubes",
     icon: [576, 512, [], "f1b3", "M290.8 48.6l78.4 29.7L288 109.5 206.8 78.3l78.4-29.7c1.8-.7 3.8-.7 5.7 0zM136 92.5l0 112.2c-1.3 .4-2.6 .8-3.9 1.3l-96 36.4C14.4 250.6 0 271.5 0 294.7L0 413.9c0 22.2 13.1 42.3 33.5 51.3l96 42.2c14.4 6.3 30.7 6.3 45.1 0L288 457.5l113.5 49.9c14.4 6.3 30.7 6.3 45.1 0l96-42.2c20.3-8.9 33.5-29.1 33.5-51.3l0-119.1c0-23.3-14.4-44.1-36.1-52.4l-96-36.4c-1.3-.5-2.6-.9-3.9-1.3l0-112.2c0-23.3-14.4-44.1-36.1-52.4l-96-36.4c-12.8-4.8-26.9-4.8-39.7 0l-96 36.4C150.4 48.4 136 69.3 136 92.5zM392 210.6l-82.4 31.2 0-89.2L392 121l0 89.6zM154.8 250.9l78.4 29.7L152 311.7 70.8 280.6l78.4-29.7c1.8-.7 3.8-.7 5.7 0zm18.8 204.4l0-100.5L256 323.2l0 95.9-82.4 36.2zM421.2 250.9c1.8-.7 3.8-.7 5.7 0l78.4 29.7L424 311.7l-81.2-31.1 78.4-29.7zM523.2 421.2l-77.6 34.1 0-100.5L528 323.2l0 90.7c0 3.2-1.9 6-4.8 7.3z"]
   };
+  var faEnvelope = {
+    prefix: "fas",
+    iconName: "envelope",
+    icon: [512, 512, [128386, 9993, 61443], "f0e0", "M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"]
+  };
   var faGear = {
     prefix: "fas",
     iconName: "gear",
     icon: [512, 512, [9881, "cog"], "f013", "M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"]
   };
   var faCog = faGear;
-  var faNetworkWired = {
-    prefix: "fas",
-    iconName: "network-wired",
-    icon: [640, 512, [], "f6ff", "M256 64l128 0 0 64-128 0 0-64zM240 0c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l48 0 0 32L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l96 0 0 32-48 0c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l160 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-48 0 0-32 256 0 0 32-48 0c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l160 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-48 0 0-32 96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-256 0 0-32 48 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48L240 0zM96 448l0-64 128 0 0 64L96 448zm320-64l128 0 0 64-128 0 0-64z"]
-  };
   var faSun = {
     prefix: "fas",
     iconName: "sun",
     icon: [512, 512, [9728], "f185", "M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"]
+  };
+  var faBoxesStacked = {
+    prefix: "fas",
+    iconName: "boxes-stacked",
+    icon: [576, 512, [62625, "boxes", "boxes-alt"], "f468", "M248 0L208 0c-26.5 0-48 21.5-48 48l0 112c0 35.3 28.7 64 64 64l128 0c35.3 0 64-28.7 64-64l0-112c0-26.5-21.5-48-48-48L328 0l0 80c0 8.8-7.2 16-16 16l-48 0c-8.8 0-16-7.2-16-16l0-80zM64 256c-35.3 0-64 28.7-64 64L0 448c0 35.3 28.7 64 64 64l160 0c35.3 0 64-28.7 64-64l0-128c0-35.3-28.7-64-64-64l-40 0 0 80c0 8.8-7.2 16-16 16l-48 0c-8.8 0-16-7.2-16-16l0-80-40 0zM352 512l160 0c35.3 0 64-28.7 64-64l0-128c0-35.3-28.7-64-64-64l-40 0 0 80c0 8.8-7.2 16-16 16l-48 0c-8.8 0-16-7.2-16-16l0-80-40 0c-15 0-28.8 5.1-39.7 13.8c4.9 10.4 7.7 22 7.7 34.2l0 160c0 12.2-2.8 23.8-7.7 34.2C323.2 506.9 337 512 352 512z"]
   };
   var faCircleHalfStroke = {
     prefix: "fas",
@@ -5274,6 +5304,11 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     iconName: "chevron-right",
     icon: [320, 512, [9002], "f054", "M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"]
   };
+  var faBuilding = {
+    prefix: "fas",
+    iconName: "building",
+    icon: [384, 512, [127970, 61687], "f1ad", "M48 0C21.5 0 0 21.5 0 48L0 464c0 26.5 21.5 48 48 48l96 0 0-80c0-26.5 21.5-48 48-48s48 21.5 48 48l0 80 96 0c26.5 0 48-21.5 48-48l0-416c0-26.5-21.5-48-48-48L48 0zM64 240c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zm112-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zM80 96l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zM272 96l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16z"]
+  };
   var faMoon = {
     prefix: "fas",
     iconName: "moon",
@@ -5283,6 +5318,11 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     prefix: "fas",
     iconName: "desktop",
     icon: [576, 512, [128421, 61704, "desktop-alt"], "f390", "M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l176 0-10.7 32L160 448c-17.7 0-32 14.3-32 32s14.3 32 32 32l256 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-69.3 0L336 416l176 0c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0zM512 64l0 224L64 288 64 64l448 0z"]
+  };
+  var faUserPlus = {
+    prefix: "fas",
+    iconName: "user-plus",
+    icon: [640, 512, [], "f234", "M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3zM504 312l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"]
   };
 
   // src/app/icons.js
@@ -5301,8 +5341,16 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     faBars,
     faCircleHalfStroke,
     faBullseye,
-    faNetworkWired,
-    faCubes
+    faBoxesStacked,
+    faCubes,
+    faRightToBracket,
+    faUserPlus,
+    faEnvelope,
+    faLock,
+    faBuilding,
+    faUser,
+    faArrowRight,
+    faCircleNotch
   );
   dom$1.watch();
 
@@ -5317,7 +5365,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     {
       id: "medios",
       label: "Medios",
-      icon: "fa-solid fa-network-wired",
+      icon: "fa-solid fa-boxes-stacked",
       description: "C\xF3mo llegar\xE1s ah\xED"
     },
     {
@@ -5501,7 +5549,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       el.className = "sd-page animate__animated animate__fadeIn";
       el.innerHTML = `
       <div class="sd-page__hero">
-        <div class="sd-page__hero-icon"><i class="fa-solid fa-network-wired"></i></div>
+        <div class="sd-page__hero-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
         <div class="sd-page__hero-content">
           <h2 class="sd-page__hero-title">Medios</h2>
           <p class="sd-page__hero-desc">
@@ -5512,7 +5560,7 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       </div>
       <div class="sd-page__coming-soon">
         <div class="sd-coming-card">
-          <i class="fa-solid fa-network-wired sd-coming-card__icon"></i>
+          <i class="fa-solid fa-boxes-stacked sd-coming-card__icon"></i>
           <h3 class="sd-coming-card__title">Pr\xF3ximamente</h3>
           <p class="sd-coming-card__text">
             Aqu\xED definir\xE1s los medios para alcanzar tus arenas estrat\xE9gicas.
@@ -5644,6 +5692,322 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     }
   };
 
+  // src/app/services/authApi.js
+  var getGraphqlEndpoint = () => {
+    if (window.SD_GRAPHQL_ENDPOINT) return window.SD_GRAPHQL_ENDPOINT;
+    const storedEndpoint = localStorage.getItem("sd-graphql-endpoint");
+    if (storedEndpoint) return storedEndpoint;
+    return `${window.location.protocol}//${window.location.hostname}:8001/graphql`;
+  };
+  var requestGraphql = async (query, variables) => {
+    let response;
+    try {
+      response = await fetch(getGraphqlEndpoint(), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ query, variables })
+      });
+    } catch (error) {
+      throw new Error("No se pudo conectar con el backend.");
+    }
+    const body = await response.json();
+    if (!response.ok || body.errors?.length) {
+      throw new Error(translateAuthError(body.errors?.[0]?.message));
+    }
+    return body.data;
+  };
+  var translateAuthError = (message = "") => {
+    const normalized = message.toLowerCase();
+    if (normalized.includes("email not found")) {
+      return "No existe una cuenta con ese correo.";
+    }
+    if (normalized.includes("incorrect password")) {
+      return "La contrase\xF1a es incorrecta.";
+    }
+    if (normalized.includes("user already exists")) {
+      return "Ya existe una cuenta con ese correo.";
+    }
+    if (normalized.includes("network") || normalized.includes("failed to fetch")) {
+      return "No se pudo conectar con el backend.";
+    }
+    return message || "No se pudo completar la solicitud.";
+  };
+  var AuthApi = {
+    async login({ email, password }) {
+      const data = await requestGraphql(
+        `mutation Login($input: LoginInput!) {
+        login(login: $input) {
+          email
+          token
+        }
+      }`,
+        {
+          input: { email, password }
+        }
+      );
+      localStorage.setItem("sd-auth-token", data.login.token);
+      localStorage.setItem("sd-auth-email", data.login.email);
+      return data.login;
+    },
+    async register({ name, email, password, companyName }) {
+      const data = await requestGraphql(
+        `mutation Register($input: RegisterInput!) {
+        register(registerInput: $input)
+      }`,
+        {
+          input: { name, email, password, companyName }
+        }
+      );
+      return data.register;
+    }
+  };
+
+  // src/app/pages/LoginPage.js
+  var LoginPage = class {
+    constructor({ onNavigate } = {}) {
+      this.onNavigate = onNavigate;
+    }
+    render() {
+      const el = document.createElement("div");
+      el.className = "sd-auth-page animate__animated animate__fadeIn";
+      el.innerHTML = `
+      <section class="sd-auth-panel">
+        <div class="sd-auth-panel__brand">
+          <div class="sd-auth-panel__icon"><i class="fa-solid fa-right-to-bracket"></i></div>
+          <h2 class="sd-auth-panel__title">Login</h2>
+          <p class="sd-auth-panel__text">
+            Accede a tu espacio de planeaci\xF3n estrat\xE9gica.
+          </p>
+        </div>
+
+        <form class="sd-auth-form" novalidate>
+          <div class="field">
+            <label class="label" for="login-email">Correo</label>
+            <p class="control has-icons-left">
+              <input class="input" id="login-email" name="email" type="email" autocomplete="email" placeholder="correo@empresa.com" required>
+              <span class="icon is-small is-left"><i class="fa-solid fa-envelope"></i></span>
+            </p>
+          </div>
+
+          <div class="field">
+            <label class="label" for="login-password">Contrase\xF1a</label>
+            <p class="control has-icons-left">
+              <input class="input" id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Contrase\xF1a" required>
+              <span class="icon is-small is-left"><i class="fa-solid fa-lock"></i></span>
+            </p>
+          </div>
+
+          <p class="help sd-auth-message" aria-live="polite"></p>
+
+          <button class="button is-primary is-fullwidth sd-auth-submit" type="submit">
+            <span class="sd-auth-submit-text">Entrar</span>
+            <span class="sd-auth-submit-icon"><i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+        </form>
+
+        <div class="sd-auth-alt">
+          <span>\xBFA\xFAn no tienes cuenta?</span>
+          <button type="button" class="sd-auth-link">Crear registro</button>
+        </div>
+      </section>
+    `;
+      const form = el.querySelector(".sd-auth-form");
+      const message = el.querySelector(".sd-auth-message");
+      const submit = el.querySelector(".sd-auth-submit");
+      const registerBtn = el.querySelector(".sd-auth-link");
+      registerBtn.addEventListener("click", () => this.onNavigate?.("registro"));
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const validationMessage = this.validateForm(form);
+        if (validationMessage) {
+          this.setMessage(message, validationMessage, "error");
+          return;
+        }
+        this.setLoading(submit, true);
+        this.setMessage(message, "");
+        try {
+          const login = await AuthApi.login({
+            email: String(formData.get("email")).trim(),
+            password: String(formData.get("password"))
+          });
+          this.setMessage(message, `Sesi\xF3n iniciada como ${login.email}`, "success");
+          this.onNavigate?.("arenas");
+        } catch (error) {
+          this.setMessage(message, error.message, "error");
+        } finally {
+          this.setLoading(submit, false);
+        }
+      });
+      return el;
+    }
+    setLoading(button, isLoading) {
+      button.disabled = isLoading;
+      button.classList.toggle("is-loading", isLoading);
+      button.querySelector(".sd-auth-submit-text").textContent = isLoading ? "Entrando..." : "Entrar";
+      button.querySelector(".sd-auth-submit-icon").innerHTML = isLoading ? '<i class="fa-solid fa-circle-notch"></i>' : '<i class="fa-solid fa-arrow-right"></i>';
+    }
+    setMessage(message, text2, type = "") {
+      message.textContent = text2;
+      message.className = `sd-auth-message${type ? ` is-${type}` : ""}`;
+    }
+    validateForm(form) {
+      const email = form.elements.email;
+      const password = form.elements.password;
+      if (!email.value.trim()) {
+        return "Escribe tu correo.";
+      }
+      if (!email.validity.valid) {
+        return "Escribe un correo v\xE1lido.";
+      }
+      if (!password.value) {
+        return "Escribe tu contrase\xF1a.";
+      }
+      return "";
+    }
+  };
+
+  // src/app/pages/RegisterPage.js
+  var RegisterPage = class {
+    constructor({ onNavigate } = {}) {
+      this.onNavigate = onNavigate;
+    }
+    render() {
+      const el = document.createElement("div");
+      el.className = "sd-auth-page animate__animated animate__fadeIn";
+      el.innerHTML = `
+      <section class="sd-auth-panel sd-auth-panel--wide">
+        <div class="sd-auth-panel__brand">
+          <div class="sd-auth-panel__icon"><i class="fa-solid fa-user-plus"></i></div>
+          <h2 class="sd-auth-panel__title">Registro</h2>
+          <p class="sd-auth-panel__text">
+            Crea tu empresa y el usuario administrador.
+          </p>
+        </div>
+
+        <form class="sd-auth-form" novalidate>
+          <div class="sd-auth-grid">
+            <div class="field">
+              <label class="label" for="register-name">Nombre</label>
+              <p class="control has-icons-left">
+                <input class="input" id="register-name" name="name" type="text" autocomplete="name" placeholder="Nombre completo" minlength="2" required>
+                <span class="icon is-small is-left"><i class="fa-solid fa-user"></i></span>
+              </p>
+            </div>
+
+            <div class="field">
+              <label class="label" for="register-company">Empresa</label>
+              <p class="control has-icons-left">
+                <input class="input" id="register-company" name="companyName" type="text" autocomplete="organization" placeholder="Nombre de empresa" required>
+                <span class="icon is-small is-left"><i class="fa-solid fa-building"></i></span>
+              </p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="register-email">Correo</label>
+            <p class="control has-icons-left">
+              <input class="input" id="register-email" name="email" type="email" autocomplete="email" placeholder="correo@empresa.com" required>
+              <span class="icon is-small is-left"><i class="fa-solid fa-envelope"></i></span>
+            </p>
+          </div>
+
+          <div class="field">
+            <label class="label" for="register-password">Contrase\xF1a</label>
+            <p class="control has-icons-left">
+              <input class="input" id="register-password" name="password" type="password" autocomplete="new-password" placeholder="M\xEDnimo 8 caracteres" minlength="8" required>
+              <span class="icon is-small is-left"><i class="fa-solid fa-lock"></i></span>
+            </p>
+          </div>
+
+          <p class="help sd-auth-message" aria-live="polite"></p>
+
+          <button class="button is-primary is-fullwidth sd-auth-submit" type="submit">
+            <span class="sd-auth-submit-text">Crear cuenta</span>
+            <span class="sd-auth-submit-icon"><i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+        </form>
+
+        <div class="sd-auth-alt">
+          <span>\xBFYa tienes cuenta?</span>
+          <button type="button" class="sd-auth-link">Ir a login</button>
+        </div>
+      </section>
+    `;
+      const form = el.querySelector(".sd-auth-form");
+      const message = el.querySelector(".sd-auth-message");
+      const submit = el.querySelector(".sd-auth-submit");
+      const loginBtn = el.querySelector(".sd-auth-link");
+      loginBtn.addEventListener("click", () => this.onNavigate?.("login"));
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const validationMessage = this.validateForm(form);
+        if (validationMessage) {
+          this.setMessage(message, validationMessage, "error");
+          return;
+        }
+        this.setLoading(submit, true);
+        this.setMessage(message, "");
+        try {
+          await AuthApi.register({
+            name: String(formData.get("name")).trim(),
+            companyName: String(formData.get("companyName")).trim(),
+            email: String(formData.get("email")).trim(),
+            password: String(formData.get("password"))
+          });
+          this.setMessage(message, "Registro creado. Ya puedes iniciar sesi\xF3n.", "success");
+          window.setTimeout(() => this.onNavigate?.("login"), 700);
+        } catch (error) {
+          this.setMessage(message, error.message, "error");
+        } finally {
+          this.setLoading(submit, false);
+        }
+      });
+      return el;
+    }
+    setLoading(button, isLoading) {
+      button.disabled = isLoading;
+      button.classList.toggle("is-loading", isLoading);
+      button.querySelector(".sd-auth-submit-text").textContent = isLoading ? "Creando..." : "Crear cuenta";
+      button.querySelector(".sd-auth-submit-icon").innerHTML = isLoading ? '<i class="fa-solid fa-circle-notch"></i>' : '<i class="fa-solid fa-arrow-right"></i>';
+    }
+    setMessage(message, text2, type = "") {
+      message.textContent = text2;
+      message.className = `sd-auth-message${type ? ` is-${type}` : ""}`;
+    }
+    validateForm(form) {
+      const name = form.elements.name;
+      const companyName = form.elements.companyName;
+      const email = form.elements.email;
+      const password = form.elements.password;
+      if (!name.value.trim()) {
+        return "Escribe tu nombre.";
+      }
+      if (name.value.trim().length < 2) {
+        return "El nombre debe tener al menos 2 caracteres.";
+      }
+      if (!companyName.value.trim()) {
+        return "Escribe el nombre de tu empresa.";
+      }
+      if (!email.value.trim()) {
+        return "Escribe tu correo.";
+      }
+      if (!email.validity.valid) {
+        return "Escribe un correo v\xE1lido.";
+      }
+      if (!password.value) {
+        return "Escribe una contrase\xF1a.";
+      }
+      if (password.value.length < 8) {
+        return "La contrase\xF1a debe tener al menos 8 caracteres.";
+      }
+      return "";
+    }
+  };
+
   // src/app/components/PageRouter.js
   var PAGES = {
     arenas: ArenasPage,
@@ -5651,15 +6015,18 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     propuesta: PropuestaPage,
     despliegue: DesplieguePage,
     logica: LogicaPage,
-    configuracion: ConfiguracionPage
+    configuracion: ConfiguracionPage,
+    login: LoginPage,
+    registro: RegisterPage
   };
   var PageRouter = class {
-    constructor({ currentPage }) {
+    constructor({ currentPage, onNavigate }) {
       this.currentPage = currentPage;
+      this.onNavigate = onNavigate;
     }
     render() {
       const PageClass = PAGES[this.currentPage] || ArenasPage;
-      const page = new PageClass();
+      const page = new PageClass({ onNavigate: this.onNavigate });
       return page.render();
     }
   };
@@ -5684,9 +6051,16 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
     render() {
       const state = this.store.getState().ui;
       const { resolvedTheme, sidebarCollapsed, currentPage } = state;
+      const authPages = ["login", "registro"];
+      const isAuthPage = authPages.includes(currentPage);
+      const isAuthenticated = Boolean(localStorage.getItem("sd-auth-token"));
       document.documentElement.setAttribute("data-theme", resolvedTheme);
       if (!this.el) return;
       this.el.innerHTML = "";
+      if (!isAuthenticated || isAuthPage) {
+        this.renderAuthLayout(isAuthPage ? currentPage : "login");
+        return;
+      }
       this.el.className = `app-layout${sidebarCollapsed ? " sidebar-collapsed" : ""}`;
       const sidebar = new Sidebar({
         collapsed: sidebarCollapsed,
@@ -5706,10 +6080,21 @@ Take a look at the reducer(s) handling this action type: ${action.type}.
       main.appendChild(header.render());
       const content = document.createElement("div");
       content.className = "app-content";
-      const router = new PageRouter({ currentPage });
+      const router = new PageRouter({
+        currentPage,
+        onNavigate: (page) => this.store.dispatch(setCurrentPage(page))
+      });
       content.appendChild(router.render());
       main.appendChild(content);
       this.el.appendChild(main);
+    }
+    renderAuthLayout(currentPage) {
+      this.el.className = "app-auth-layout";
+      const router = new PageRouter({
+        currentPage,
+        onNavigate: (page) => this.store.dispatch(setCurrentPage(page))
+      });
+      this.el.appendChild(router.render());
     }
   };
 
