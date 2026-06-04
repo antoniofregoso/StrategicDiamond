@@ -1,17 +1,16 @@
-from sqlalchemy.ext.asyncio import  AsyncSession, create_async_engine
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import text
 
 from sqlmodel import SQLModel
 from settings import settings
 
+
 class DatabaseSession:
-    def __init__(self,url:str=settings.DB_CONFIG):
+    def __init__(self, url: str = settings.DB_CONFIG):
         self.engine = create_async_engine(url, echo=settings.DB_ECHO)
         self.SessionLocal = sessionmaker(
-            bind=self.engine,
-            class_=AsyncSession,
-            expire_on_commit=False
+            bind=self.engine, class_=AsyncSession, expire_on_commit=False
         )
 
     async def create_all(self):
@@ -23,7 +22,7 @@ class DatabaseSession:
             await conn.run_sync(SQLModel.metadata.drop_all)
 
     async def close(self):
-        await self.engine.dispose()   
+        await self.engine.dispose()
 
     # Prepare the context for the asynchronous operation
     async def __aenter__(self):
@@ -41,6 +40,5 @@ class DatabaseSession:
             await self.session.rollback()
             raise e
 
-db = DatabaseSession()
-    
 
+db = DatabaseSession()

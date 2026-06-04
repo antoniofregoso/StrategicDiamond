@@ -1,11 +1,25 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.exceptions import RequestValidationError
 import strawberry
 from sqlalchemy.sql import text
+from datetime import datetime
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 
 from config import db
+from settings import settings
+from exceptions import (
+    AppException,
+    ValidationException,
+    AuthenticationException,
+    AuthorizationException,
+    ResourceNotFoundException,
+    DatabaseException,
+)
 
 from Graphql.query import Query
 from Graphql.mutation import Mutation
@@ -17,6 +31,23 @@ from logging_config import configure_logging, get_logger
 configure_logging()
 logger = get_logger(__name__)
 
+# Configurar rate limiter
+limiter = Limiter(key_func=get_remote_address)
+
+
+def create_error_response(
+    status_code: int, error_code: str, message: str, details=None
+):
+    """Crea una respuesta de error estructurada."""
+    return {
+        "status_code": status_code,
+        "error_code": error_code,
+        "message": message,
+        "details": details or {},
+        "timestamp": datetime.utcnow().isoformat(),
+    }
+
+
 def init_app():
     apps = FastAPI(
         title="API",
@@ -26,11 +57,75 @@ def init_app():
 
     apps.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],  # Allows all origins
-        allow_credentials=True,
-        allow_methods=["*"],  # Allows all methods
-        allow_headers=["*"],  # Allows all headers
+        allow_origins=settings.CORS_ORIGINS,
+        allow_credentials=settings.CORS_CREDENTIALS,
+        allow_methods=settings.CORS_METHODS,
+        allow_headers=settings.CORS_HEADERS,
     )
+
+    # Exception Handlers
+    @apps.exception_handler(AppException)
+    async def app_exception_handler(request: Request, exc: AppException):
+        logger.error(
+            f"AppException: {exc.error_code} - {exc.message}",
+            extra={"status_code": exc.status_code, "details": exc.details},
+        )
+        return JSONResponse(
+            status_code=exc.status_code,
+            content=create_error_response(
+                exc.status_code, exc.error_code, exc.message, exc.details
+            ),
+        )
+
+    @apps.exception_handler(RequestValidationError)
+    async def validation_exception_handler(
+        request: Request, exc: RequestValidationError
+    ):
+        logger.warning(f"Validation error on {request.url}: {exc.errors()}")
+        errors = []
+        for error in exc.errors():
+            errors.append(
+                {
+                    "field": ".".join(str(x) for x in error["loc"][1:]),
+                    "message": error["msg"],
+                    "type": error["type"],
+                }
+            )
+        return JSONResponse(
+            status_code=422,
+            content=create_error_response(
+                422, "VALIDATION_ERROR", "Request validation failed", {"errors": errors}
+            ),
+        )
+
+    @apps.exception_handler(Exception)
+    async def general_exception_handler(request: Request, exc: Exception):
+        logger.exception(f"Unhandled exception: {str(exc)}")
+        return JSONResponse(
+            status_code=500,
+            content=create_error_response(
+                500,
+                "INTERNAL_ERROR",
+                "An unexpected error occurred",
+                {} if not settings.LOG_LEVEL == "DEBUG" else {"error": str(exc)},
+            ),
+        )
+
+    @apps.exception_handler(RateLimitExceeded)
+    async def rate_limit_exceeded_handler(request: Request, exc: RateLimitExceeded):
+        logger.warning(f"Rate limit exceeded for {get_remote_address(request)}")
+        return JSONResponse(
+            status_code=429,
+            content=create_error_response(
+                429,
+                "RATE_LIMIT_EXCEEDED",
+                "Too many requests. Please try again later.",
+            ),
+        )
+
+    # Aplicar rate limiter a la app
+    apps.state.limiter = limiter
+    apps.add_exception_handler(RateLimitExceeded, rate_limit_exceeded_handler)
 
     @apps.on_event("startup")
     async def startup():
@@ -56,15 +151,16 @@ def init_app():
         except Exception as e:
             return JSONResponse(
                 status_code=503,
-                content={"status": "unhealthy", "database": "offline", "error": str(e)}
+                content={"status": "unhealthy", "database": "offline", "error": str(e)},
             )
-    
+
     schema = strawberry.Schema(query=Query, mutation=Mutation)
     graphql_app = GraphQLRouter(schema)
-    
+
     apps.include_router(graphql_app, prefix="/graphql")
 
     return apps
+
 
 app = init_app()
 

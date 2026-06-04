@@ -1,12 +1,10 @@
 from Models.user import User
 from config import db
-from sqlalchemy import select, update, delete, func
+from sqlalchemy import select, update, delete
 
 
 class UserRepository:
 
-
-    
     @staticmethod
     async def create(user: User):
         async with db as session:
@@ -36,12 +34,12 @@ class UserRepository:
             query = select(User).where(User.id == id)
             result = await session.execute(query)
             user = result.scalar_one_or_none()
-            
+
             if user:
                 # We expect note_data to be a dict
                 for key, value in user_data.items():
                     setattr(user, key, value)
-                
+
                 session.add(user)
                 await session.commit()
                 await session.refresh(user)
@@ -54,7 +52,7 @@ class UserRepository:
             query = select(User).where(User.id == id)
             result = await session.execute(query)
             user = result.scalar_one_or_none()
-            
+
             if user:
                 await session.delete(user)
                 await session.commit()
@@ -67,11 +65,3 @@ class UserRepository:
             query = select(User).where(User.email == email)
             result = await session.execute(query)
             return result.scalar_one_or_none()
-
-    @staticmethod
-    async def count_by_company(company_id: int) -> int:
-        async with db as session:
-            query = select(func.count()).select_from(User).where(User.company_id == company_id)
-            result = await session.execute(query)
-            return result.scalar()
-

@@ -1,29 +1,26 @@
 import strawberry
-from enum import Enum
-from Models.enums import RoleType, LicenseType
+from typing import Optional, Any, Dict
 
-# Register Enums to Strawberry
-strawberry.enum(RoleType)
-strawberry.enum(LicenseType)
 
 @strawberry.type
-class CompanyType:
-    id: int
-    name: str
+class ErrorDetail:
+    """Detalle de error estructurado."""
+
+    field: Optional[str] = None
+    message: str = ""
+    value: Optional[str] = None
+
 
 @strawberry.type
-class LicenseTypeSchema:
-    id: int
-    type: LicenseType
-    max_users: int | None
-    is_active: bool
+class ErrorResponse:
+    """Respuesta de error estándar."""
 
-@strawberry.type
-class UserType:
-    id: int
-    name: str
-    email: str
-    role: RoleType
+    status_code: int
+    error_code: str
+    message: str
+    details: Optional[Dict[str, Any]] = None
+    timestamp: Optional[str] = None
+
 
 @strawberry.type
 class NoteType:
@@ -31,32 +28,27 @@ class NoteType:
     name: str
     description: str
 
+
 @strawberry.input
 class NoteInput:
     name: str
     description: str
+
 
 @strawberry.input
 class RegisterInput:
     name: str
     email: str
     password: str
-    company_name: str # Nombre de la empresa a registrar
 
-@strawberry.input
-class AddCompanyUserInput:
-    name: str
-    email: str
-    password: str
-    role: RoleType = RoleType.USER
 
 @strawberry.input
 class LoginInput:
     email: str
     password: str
 
+
 @strawberry.type
 class LoginType:
     email: str
     token: str
-

@@ -1,35 +1,59 @@
 import logging
 import sys
+import json
+from datetime import datetime
+from pythonjsonlogger import jsonlogger
 from settings import settings
 
-# Configuración del formato de logs
-# Ejemplo: 2023-10-27 10:00:00,123 - INFO - [main.py:15] - Mensaje de prueba
-LOG_FORMAT = "%(asctime)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(message)s"
+
+class CustomJsonFormatter(jsonlogger.JsonFormatter):
+    """Formateador JSON personalizado con campos adicionales."""
+
+    def add_fields(self, log_record, record, message_dict):
+        super().add_fields(log_record, record, message_dict)
+        log_record["timestamp"] = datetime.utcnow().isoformat()
+        log_record["level"] = record.levelname
+        log_record["logger"] = record.name
+        log_record["module"] = record.module
+
 
 def configure_logging():
-    """Configura el logging global de la aplicación."""
-    
-    # Obtener el nivel de log desde settings (ej. "DEBUG", "INFO")
+    """Configura el logging global de la aplicación con soporte para JSON."""
+
     numeric_level = getattr(logging, settings.LOG_LEVEL.upper(), logging.INFO)
-    
-    # Configuración básica
-    logging.basicConfig(
-        level=numeric_level,
-        format=LOG_FORMAT,
-        handlers=[
-            logging.StreamHandler(sys.stdout)  # Enviar logs a la consola (stdout)
-        ]
+
+    root_logger = logging.getLogger()
+    root_logger.setLevel(numeric_level)
+
+    # Handler para consola en formato JSON
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setLevel(numeric_level)
+
+    # Formateador JSON
+    json_formatter = CustomJsonFormatter(
+        "%(timestamp)s %(level)s %(logger)s %(message)s"
     )
-    
-    # Ajustar logs de librerías ruidosas
+    console_handler.setFormatter(json_formatter)
+
+    # Limpiar handlers previos
+    root_logger.handlers.clear()
+    root_logger.addHandler(console_handler)
+
+    # Silenciar logs de librerías ruidosas
     logging.getLogger("multipart").setLevel(logging.WARNING)
-    logging.getLogger("uvicorn.access").setLevel(logging.WARNING) # Menos ruido de requests http normales
+    logging.getLogger("uvicorn.access").setLevel(logging.WARNING)
+    logging.getLogger("sqlalchemy.engine").setLevel(logging.WARNING)
 
-    # Crear logger raíz para pruebas
     logger = logging.getLogger("api")
-    logger.info(f"Logging configurado. Nivel: {settings.LOG_LEVEL}")
+    logger.info(
+        "Logging configured",
+        extra={
+            "log_level": settings.LOG_LEVEL,
+            "environment": "development",
+        },
+    )
 
-# Instancia lista para importar si se necesita un logger rápido,
-# aunque se recomienda usar logging.getLogger(__name__) en cada archivo.
+
 def get_logger(name: str):
+    """Obtiene un logger configurado para un módulo."""
     return logging.getLogger(name)

@@ -2,8 +2,9 @@ from sqlmodel import select
 from config import db
 from Models.note import Note
 
+
 class NoteRepository:
-    
+
     @staticmethod
     async def create(note: Note):
         async with db as session:
@@ -33,12 +34,12 @@ class NoteRepository:
             query = select(Note).where(Note.id == id)
             result = await session.execute(query)
             note = result.scalar_one_or_none()
-            
+
             if note:
                 # We expect note_data to be a dict
                 for key, value in note_data.items():
                     setattr(note, key, value)
-                
+
                 session.add(note)
                 await session.commit()
                 await session.refresh(note)
@@ -51,7 +52,7 @@ class NoteRepository:
             query = select(Note).where(Note.id == id)
             result = await session.execute(query)
             note = result.scalar_one_or_none()
-            
+
             if note:
                 await session.delete(note)
                 await session.commit()

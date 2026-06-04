@@ -3,12 +3,13 @@ from Repository.note import NoteRepository
 from schema import NoteInput, NoteType
 from dataclasses import asdict
 
+
 class NoteService:
 
     @staticmethod
     async def add_note(note: NoteInput):
-        
-        note = Note( **asdict(note))
+
+        note = Note(**asdict(note))
         await NoteRepository.create(note)
         return NoteType(**note.dict())
 

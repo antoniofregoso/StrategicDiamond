@@ -4,6 +4,7 @@ from strawberry.permission import BasePermission
 from strawberry.types import Info
 from Middleware.JWTManager import JWTManager
 
+
 class IsAuthenticated(BasePermission):
     message = "User is not authenticated"
 
@@ -17,6 +18,6 @@ class IsAuthenticated(BasePermission):
                 JWTManager.verify_token(token)
                 return True
             except Exception:
-                return False            
+                return False
 
         return False
