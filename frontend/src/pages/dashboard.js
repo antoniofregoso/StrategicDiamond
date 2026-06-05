@@ -1,7 +1,8 @@
 export function dashboard(req, router){
-    const userId = req.params?.id || 'user';
+    let area = req.params.area || "general";
     document.getElementById('app').innerHTML = `
     <h1>Dashboard</h1>
-    <p>Welcome ${userId} to the dashboard!</p>
+    <p>Welcome  to the dashboard!</p>
+    <p>Current area: ${area}</p>
     `;
 }
