@@ -6,3 +6,4 @@ App.on('/', home);
 App.on('/login', login);
 App.on('/dashboard', dashboard);
 App.on('/dashboard/{area}', dashboard);
+App.on('/dashboard/{area}/{subarea}', dashboard);
