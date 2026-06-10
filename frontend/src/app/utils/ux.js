@@ -3,11 +3,12 @@
  * Get the area page title in the current language.
  * @param {string} area
  * @param {string} lang
- * @param {Array} MENU_ITEMS
+ * @param {Array} items
  * @returns {string}
  */
-function getAreaTitle(area, lang, MENU_ITEMS) {
-    const item = MENU_ITEMS.find((m) => m.key === area);
+export function getAreaTitle(area, lang, items) {
+    const item = items.find((m) => m.key === area);
     if (!item) return area;
     return lang === 'es' ? item.labelEs : item.labelEn;
 }
+

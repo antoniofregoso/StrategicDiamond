@@ -4,7 +4,7 @@ import { contextActions } from '../store/actions/index.js';
 import { renderSidebar, initSidebar, MENU_ITEMS } from '../components/sidebar.js';
 import { renderTopbar, initTopbar } from '../components/topbar.js';
 import { t } from '../../i18n/translations.js';
-import { applyTheme } from '../utils';
+import { applyTheme, getAreaTitle } from '../utils';
 
 // ── Track last rendered values to avoid redundant re-renders ──────────────────
 let _lastLang = null;
@@ -14,19 +14,6 @@ let _lastArea = null;
 let _effectCleanup = null;
 
 
-
-/**
- * Get the area page title in the current language.
- * @param {string} area
- * @param {string} lang
- * @returns {string}
- */
-function getAreaTitle(area, lang) {
-    const item = MENU_ITEMS.find((m) => m.key === area);
-    if (!item) return area;
-    return lang === 'es' ? item.labelEs : item.labelEn;
-}
-
 /**
  * Render the main content area HTML.
  * @param {string} area
@@ -34,7 +21,7 @@ function getAreaTitle(area, lang) {
  * @returns {string}
  */
 function renderContent(area, lang) {
-    const title = getAreaTitle(area, lang);
+    const title = getAreaTitle(area, lang, MENU_ITEMS);
     const welcome = t('content.welcome', lang);
     const placeholder = t('content.placeholder', lang);
 
@@ -56,7 +43,7 @@ function renderContent(area, lang) {
  * Called on first load and whenever signal values change.
  */
 function renderDashboard(lang, theme, expanded, area) {
-    const pageTitle = getAreaTitle(area, lang);
+    const pageTitle = getAreaTitle(area, lang, MENU_ITEMS);
     const appEl = document.getElementById('app');
 
     appEl.innerHTML = `
@@ -108,7 +95,7 @@ function patchDashboard(lang, theme, expanded, area, prevLang, prevTheme, prevEx
     // Patch topbar (theme, lang change)
     if (themeChanged || langChanged || areaChanged) {
         const topbarEl = document.getElementById('dashboard-topbar');
-        const pageTitle = getAreaTitle(area, lang);
+        const pageTitle = getAreaTitle(area, lang, MENU_ITEMS);
         if (topbarEl) {
             topbarEl.outerHTML = renderTopbar(lang, theme, pageTitle);
             initTopbar();

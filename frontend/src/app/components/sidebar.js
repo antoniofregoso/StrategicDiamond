@@ -2,6 +2,7 @@ import { icon, faChartLine, faUsers, faFolder, faGear, faBars, faChevronLeft } f
 import { contextActions } from '../store/actions/index.js';
 import { appSignal } from '../store/appStore.js';
 import { t } from '../../i18n/translations.js';
+import { faCloud } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * ── MENU CONFIG ─────────────────────────────────────────────────────────────
@@ -11,7 +12,7 @@ export const MENU_ITEMS = [
     { key: 'area1', icon: faChartLine, labelEn: 'Area 1', labelEs: 'Área 1', url: '/dashboard/area1' },
     { key: 'area2', icon: faUsers, labelEn: 'Area 2', labelEs: 'Área 2', url: '/dashboard/area2' },
     { key: 'area3', icon: faFolder, labelEn: 'Area 3', labelEs: 'Área 3', url: '/dashboard/area3' },
-    { key: 'area4', icon: faGear, labelEn: 'Area 4', labelEs: 'Área 4', url: '/dashboard/area4' },
+    { key: 'area4', icon: faCloud, labelEn: 'Area 4', labelEs: 'Área 4', url: '/dashboard/area4' },
 ];
 
 /**
