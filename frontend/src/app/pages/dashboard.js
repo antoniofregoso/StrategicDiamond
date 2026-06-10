@@ -1,8 +1,8 @@
 import { effect } from '@preact/signals';
 import { appSignal } from '../store/appStore.js';
 import { contextActions } from '../store/actions/index.js';
-import { renderSidebar, initSidebar, MENU_ITEMS } from '../../components/sidebar.js';
-import { renderTopbar, initTopbar } from '../../components/topbar.js';
+import { renderSidebar, initSidebar, MENU_ITEMS } from '../components/sidebar.js';
+import { renderTopbar, initTopbar } from '../components/topbar.js';
 import { t } from '../../i18n/translations.js';
 
 // ── Track last rendered values to avoid redundant re-renders ──────────────────

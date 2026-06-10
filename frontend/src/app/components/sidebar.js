@@ -1,7 +1,7 @@
 import { icon, faChartLine, faUsers, faFolder, faGear, faBars, faChevronLeft } from './icon.js';
-import { contextActions } from '../app/store/actions/index.js';
-import { appSignal } from '../app/store/appStore.js';
-import { t } from '../i18n/translations.js';
+import { contextActions } from '../store/actions/index.js';
+import { appSignal } from '../store/appStore.js';
+import { t } from '../../i18n/translations.js';
 
 /**
  * ── MENU CONFIG ─────────────────────────────────────────────────────────────
