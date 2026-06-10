@@ -4,6 +4,7 @@ import { contextActions } from '../store/actions/index.js';
 import { renderSidebar, initSidebar, MENU_ITEMS } from '../components/sidebar.js';
 import { renderTopbar, initTopbar } from '../components/topbar.js';
 import { t } from '../../i18n/translations.js';
+import { applyTheme } from '../utils';
 
 // ── Track last rendered values to avoid redundant re-renders ──────────────────
 let _lastLang = null;
@@ -12,26 +13,7 @@ let _lastExpanded = null;
 let _lastArea = null;
 let _effectCleanup = null;
 
-/**
- * Resolve effective theme considering 'system' preference.
- * @param {string} theme — 'light' | 'dark' | 'system'
- * @returns {'light'|'dark'}
- */
-function resolveTheme(theme) {
-    if (theme === 'system') {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    return theme;
-}
 
-/**
- * Apply the resolved theme to <html data-theme="...">
- * @param {string} theme
- */
-function applyTheme(theme) {
-    const resolved = resolveTheme(theme);
-    document.documentElement.setAttribute('data-theme', resolved);
-}
 
 /**
  * Get the area page title in the current language.

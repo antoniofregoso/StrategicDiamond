@@ -8,10 +8,10 @@ import { t } from '../../i18n/translations.js';
  * Easy to customize: change icon, labelEn, labelEs here.
  */
 export const MENU_ITEMS = [
-    { key: 'area1', icon: faChartLine, labelEn: 'Area 1', labelEs: 'Área 1' },
-    { key: 'area2', icon: faUsers, labelEn: 'Area 2', labelEs: 'Área 2' },
-    { key: 'area3', icon: faFolder, labelEn: 'Area 3', labelEs: 'Área 3' },
-    { key: 'area4', icon: faGear, labelEn: 'Area 4', labelEs: 'Área 4' },
+    { key: 'area1', icon: faChartLine, labelEn: 'Area 1', labelEs: 'Área 1', url: '/dashboard/area1' },
+    { key: 'area2', icon: faUsers, labelEn: 'Area 2', labelEs: 'Área 2', url: '/dashboard/area2' },
+    { key: 'area3', icon: faFolder, labelEn: 'Area 3', labelEs: 'Área 3', url: '/dashboard/area3' },
+    { key: 'area4', icon: faGear, labelEn: 'Area 4', labelEs: 'Área 4', url: '/dashboard/area4' },
 ];
 
 /**
