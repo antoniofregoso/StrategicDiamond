@@ -1,5 +1,5 @@
 import { Router } from '@customerjourney/cj-router';
-import { home, login, dashboard } from './pages';
+import { home, login, dashboard } from './app/pages';
 
 export const App = new Router();
 App.on('/', home);
