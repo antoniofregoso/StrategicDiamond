@@ -26,7 +26,9 @@ export function renderTopbar(lang, theme, pageTitle) {
             aria-pressed="${theme === th.key}"
             title="${label}"
         >
-            ${icon(th.icon, 'topbar-theme-icon')}
+            <span class="topbar-theme-icon" aria-hidden="true">
+                ${icon(th.icon)}
+            </span>
         </button>
         `;
     }).join('');
