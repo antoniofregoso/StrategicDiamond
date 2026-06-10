@@ -1,0 +1,15 @@
+{
+    "app_id": "dashboard-template",
+    "app_name": "Dashboard",
+    "context": {
+        "lang": "en",
+        "theme": "system",
+        "sidebar_expanded": true,
+        "active_area": "area1"
+    },
+    "meta": {
+        "start": 0,
+        "is_loading": false,
+        "error_message": null
+    }
+}
