@@ -126,12 +126,10 @@ let _router = null;
  */
 export function dashboard(req, router) {
     _router = router;
-console.log('Dashboard page loaded with params:', router);
-    // Sync active area from URL params to signal
     const areaFromUrl = req.params?.area;
-    /*if (!MENU_ITEMS.some(item => item.key === areaFromUrl)) {
-        return router.trigger404(req.pathname); 
-    }*/
+    if (!MENU_ITEMS.some(item => item.key === areaFromUrl)) {
+        return router.trigger404(req.pathname);
+    }
     if (areaFromUrl && areaFromUrl !== appSignal.value.context.active_area) {
         contextActions.setActiveArea(areaFromUrl);
     }
