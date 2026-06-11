@@ -26,7 +26,7 @@ export function renderSidebar(lang, expanded, activeArea) {
         return `
         <li class="sidebar-item ${isActive ? 'sidebar-item--active' : ''}" data-tooltip="${label}">
             <a
-                href="#"
+                href="${item.url}"
                 class="sidebar-link"
                 data-area="${item.key}"
                 aria-label="${label}"
@@ -121,20 +121,13 @@ function hideTooltip() {
 /**
  * Bind sidebar event listeners (call after renderSidebar is injected into DOM).
  */
-export function initSidebar(router) {
+export function initSidebar() {
     // Toggle expand / collapse
     document.getElementById('sidebar-toggle')
         ?.addEventListener('click', () => contextActions.toggleSidebar());
 
-    // Menu item navigation + tooltip
+    // Menu item tooltip
     document.querySelectorAll('.sidebar-link').forEach((link) => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const area = link.dataset.area;
-            contextActions.setActiveArea(area);
-            router.navigate(`/dashboard/${area}`);
-        });
-
         link.addEventListener('mouseenter', showTooltip);
         link.addEventListener('mouseleave', hideTooltip);
     });
