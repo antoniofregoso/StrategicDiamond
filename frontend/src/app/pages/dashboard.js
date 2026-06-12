@@ -128,7 +128,7 @@ export function dashboard(req, router) {
     _router = router;
     const areaFromUrl = req.params?.area;
     if (!MENU_ITEMS.some(item => item.key === areaFromUrl)) {
-        return router.trigger404(req.pathname);
+        if (areaFromUrl!=undefined) {return router.trigger404(req.pathname);}
     }
     if (areaFromUrl && areaFromUrl !== appSignal.value.context.active_area) {
         contextActions.setActiveArea(areaFromUrl);
