@@ -4,6 +4,7 @@ import { contextActions } from '../store/actions/index.js';
 import { renderSidebar, initSidebar, MENU_ITEMS } from '../components/sidebar.js';
 import { renderTopbar, initTopbar } from '../components/topbar.js';
 import { t } from '../../i18n/translations.js';
+import { renderDefault } from '../canvas';
 import { applyTheme, getAreaTitle } from '../utils';
 
 // ── Track last rendered values to avoid redundant re-renders ──────────────────
@@ -13,30 +14,6 @@ let _lastExpanded = null;
 let _lastArea = null;
 let _effectCleanup = null;
 
-
-/**
- * Render the main content area HTML.
- * @param {string} area
- * @param {string} lang
- * @returns {string}
- */
-function renderContent(area, lang) {
-    const title = getAreaTitle(area, lang, MENU_ITEMS);
-    const welcome = t('content.welcome', lang);
-    const placeholder = t('content.placeholder', lang);
-
-    return `
-    <main id="dashboard-content" class="dash-content" role="main" aria-label="${title}">
-        <div class="dash-content-inner">
-            <div class="dash-content-hero">
-                <p class="dash-content-welcome">${welcome}</p>
-                <h2 class="dash-content-title">${title}</h2>
-                <p class="dash-content-placeholder">${placeholder}</p>
-            </div>
-        </div>
-    </main>
-    `;
-}
 
 /**
  * Full dashboard render (sidebar + topbar + content).
@@ -51,7 +28,7 @@ function renderDashboard(lang, theme, expanded, area) {
         ${renderSidebar(lang, expanded, area)}
         <div class="dash-main">
             ${renderTopbar(lang, theme, pageTitle)}
-            ${renderContent(area, lang)}
+            ${renderDefault(area, lang, MENU_ITEMS)}
         </div>
     </div>
     `;
@@ -106,7 +83,7 @@ function patchDashboard(lang, theme, expanded, area, prevLang, prevTheme, prevEx
     if (areaChanged || langChanged) {
         const contentEl = document.getElementById('dashboard-content');
         if (contentEl) {
-            contentEl.outerHTML = renderContent(area, lang);
+            contentEl.outerHTML = renderDefault(area, lang, MENU_ITEMS);
         }
     }
 
