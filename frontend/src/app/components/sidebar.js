@@ -1,19 +1,27 @@
-import { icon, faChartLine, faUsers, faFolder, faGear, faBars, faChevronLeft } from './icon.js';
+import { icon, faChartLine, faUsers, faFolder, faGear, faBars, faCloud, faChevronLeft } from './icon.js';
 import { contextActions } from '../store/actions/index.js';
 import { appSignal } from '../store/appStore.js';
 import { t } from '../../i18n/translations.js';
-import { faCloud } from '@fortawesome/free-solid-svg-icons';
-
+import data from '../data/sidebar.json' assert { type: 'json' };
 /**
  * ── MENU CONFIG ─────────────────────────────────────────────────────────────
  * Easy to customize: change icon, labelEn, labelEs here.
  */
-export const MENU_ITEMS = [
-    { key: 'area1', icon: faChartLine, labelEn: 'Area 1', labelEs: 'Área 1', url: '/dashboard/area1' },
-    { key: 'area2', icon: faUsers, labelEn: 'Area 2', labelEs: 'Área 2', url: '/dashboard/area2' },
-    { key: 'area3', icon: faFolder, labelEn: 'Area 3', labelEs: 'Área 3', url: '/dashboard/area3' },
-    { key: 'area4', icon: faCloud, labelEn: 'Area 4', labelEs: 'Área 4', url: '/dashboard/area4' },
-];
+    /*export const MENU_ITEMS = [
+        { key: 'area1', icon: faChartLine, labelEn: 'Area 1', labelEs: 'Área 1', url: '/dashboard/area1' },
+        { key: 'area2', icon: faUsers, labelEn: 'Area 2', labelEs: 'Área 2', url: '/dashboard/area2' },
+        { key: 'area3', icon: faFolder, labelEn: 'Area 3', labelEs: 'Área 3', url: '/dashboard/area3' },
+        { key: 'area4', icon: faCloud, labelEn: 'Area 4', labelEs: 'Área 4', url: '/dashboard/area4' },
+    ];*/
+
+    const iconMap = {faChartLine, faUsers, faFolder, faCloud};
+
+    const MENU_ITEMS_JSON = data;
+
+    export const MENU_ITEMS = MENU_ITEMS_JSON.map(item => ({
+    ...item,
+    icon: iconMap[item.icon] // <-- Aquí ocurre la magia
+}))
 
 /**
  * Render the sidebar HTML string.
@@ -22,7 +30,7 @@ export function renderSidebar(lang, expanded, activeArea) {
     const menuItems = MENU_ITEMS.map((item) => {
         const label = lang === 'es' ? item.labelEs : item.labelEn;
         const isActive = item.key === activeArea;
-
+console.log('Rendering sidebar item:', item.icon);
         return `
         <li class="sidebar-item ${isActive ? 'sidebar-item--active' : ''}" data-tooltip="${label}">
             <a
